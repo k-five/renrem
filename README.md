@@ -18,28 +18,28 @@ Since it uses regular expression to match a string, apart from renaming a file, 
 
 ---
 
-# Fast:   
+## Fast:
 Only C++ code and plus a little C  
 
-# Portable:  
+## Portable:
 Only the standard library:  
-	- std::iostream  
-	- std::regex  
-	- stdio.h  
+* std::iostream  
+* std::regex  
+* stdio.h  
 
-# Colorize the output:  
-Using ANCI escape code for colorize the output for both match and substitute.  
+## Colorize the output:
+Using [ANCI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
 
-# Changeable form std::regex to boost::regex:  
+## Changeable form std::regex to boost::regex:
 Since C++ use [ECMAScript](https://www.ecma-international.org/publications/standards/Ecma-262.htm) 262 if you are willing to use almost PCRE feature your can modify the code to boost::regex easly.  
 
-# Index-match ( new feature ):  
+## Index-match ( new feature ):
 A great new feature that helps you to substitute a match string as easy as possible.  
 
-# Lightweight:  
+## Lightweight:
 Less then 300 line of code.  
 
-# Auto zero leading:  
+## Auto zero leading:
 Counts each line and adds zero-leading if need.  
 
 ---
