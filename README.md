@@ -7,7 +7,7 @@ Since it uses regular expression to match a string, apart from renaming a file, 
 
 ![00_title](https://github.com/k-five/renrem/blob/master/button/00_title.png)
 ![01_fast](https://github.com/k-five/renrem/blob/master/button/01_fast.png)
-![02_portable](https://github.com/k-five/renrem/blob/master/button/02_protable.png)
+![02_portable](https://github.com/k-five/renrem/blob/master/button/02_portable.png)
 ![03_colorize](https://github.com/k-five/renrem/blob/master/button/03_colorize.png)
 ![04_changeable](https://github.com/k-five/renrem/blob/master/button/04_changeable.png)
 ![05_index](https://github.com/k-five/renrem/blob/master/button/05_index.png)
