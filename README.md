@@ -31,13 +31,13 @@ Only the standard library:
 Using [ANCI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
 
 ## Changeable form std::regex to boost::regex:
-Since C++ use [ECMAScript](https://www.ecma-international.org/publications/standards/Ecma-262.htm) 262 if you are willing to use almost PCRE feature your can modify the code to boost::regex easly.  
+Since C++ uses [ECMAScript 262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) if you are willing to use almost **PCRE** feature your can modify the code to boost::regex easly.  
 
 ## Index-match ( new feature ):
 A great new feature that helps you to substitute a match string as easy as possible.  
 
 ## Lightweight:
-Less then 300 line of code.  
+Less then 300 lines of code.  
 
 ## Auto zero leading:
 Counts each line and adds zero-leading if need.  
