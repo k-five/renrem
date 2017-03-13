@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+# file_name=$(echo $1 | perl -lne '/.*?(?=\.)/g && print $&')
+
+g++  $1 -o renrem -std=c++11 -Wall -Weffc++ -Wextra -pedantic -Wfatal-errors -pedantic-errors -O2
