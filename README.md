@@ -24,16 +24,18 @@ Only C++ code and plus a little C
 ## Portable:
 Only the standard library:  
 * std::iostream  
+* std::sstream
+* std::string    
 * std::regex  
 * stdio.h  
 
 ## Colorize the output:
-Using [ANCI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
+Using [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
 
 ## Changeable from std::regex to boost::regex:
 Since C++ uses [ECMAScript 262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) if you are willing to use almost **PCRE** feature your can modify the code to boost::regex easly.  
-![boost_regex_table](https://github.com/k-five/renrem/blob/master/screenshot/boost_regex_table.png)
-[screenshot-source](http://www.regular-expressions.info/)
+![boost_regex_table](https://github.com/k-five/renrem/blob/master/screenshot/boost_regex_table.png)  
+[table-source](http://www.regular-expressions.info/)
 
 ## Index-match ( new feature ):
 A great new feature that helps you to substitute a match string as easy as possible.  
@@ -43,6 +45,18 @@ Less then 300 lines of code.
 
 ## Auto zero leading:
 Counts each line and adds zero-leading if need.  
+
+---
+
+## some screenshots:
+
+![renrem_std_auto_leading_zeros](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_auto_leading_zeros.png)  
+
+![renrem_std_s_g_i_1_-1_2](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i_1_-1_2.png)  
+
+![renrem_std_s_g_i_1_-1](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i_1_-1.png)  
+
+![renrem_std_s_g_i](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i.png)  
 
 ---
 
