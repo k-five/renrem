@@ -1,6 +1,6 @@
 # renrem program utility  
-renrem is an acronym for [ rename ] and [ remove ] task together.  
-Since it uses regular expression to match a string, apart from renaming a file, can be used for removing a file. It also has contraction synopsis and both works together to avoid of using command-ling argument, that sometimes it annoys the user. Notice that for spelling your spell it: ren-rem.  
+**renrem** is an acronym for *rename* and *remove* task together.  
+Since it uses regular expression to match a string, apart from renaming a file, can be used for removing a file. It also has contraction synopsis and both works together to avoid of using command-ling argument, that sometimes it annoys the user. Notice that for spelling you can spell it: ren-rem.  
 
 ---
 
