@@ -66,7 +66,7 @@ Counts each line and adds zero-leading if need.
 
 ![04_windows_renrem_boost_on_powershel](https://github.com/k-five/renrem/blob/master/screenshot/04_windows_renrem_boost_on_powershel.png)  
 
-![05_windows_renrem_std_on_bash](https://github.com/k-five/renrem/blob/master/screenshot05_windows_renrem_std_on_bash.png)  
+![05_windows_renrem_std_on_bash](https://github.com/k-five/renrem/blob/master/screenshot/05_windows_renrem_std_on_bash.png)  
 
 
 ---
