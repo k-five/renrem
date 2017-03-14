@@ -50,6 +50,8 @@ Counts each line and adds zero-leading if need.
 
 ## some screenshots:
 
+### On Ubuntu ( with [Konsole](https://konsole.kde.org/) )
+
 ![renrem_std_auto_leading_zeros](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_auto_leading_zeros.png)  
 
 ![renrem_std_s_g_i_1_-1_2](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i_1_-1_2.png)  
@@ -57,6 +59,15 @@ Counts each line and adds zero-leading if need.
 ![renrem_std_s_g_i_1_-1](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i_1_-1.png)  
 
 ![renrem_std_s_g_i](https://github.com/k-five/renrem/blob/master/screenshot/renrem_std_s_g_i.png)  
+
+### On Windows ( with cmd, powershell, and cygwin-bash )
+
+![01_windows_renrem_std_on_cmd](https://github.com/k-five/renrem/blob/master/screenshot/01_windows_renrem_std_on_cmd.png)  
+
+![04_windows_renrem_boost_on_powershel](https://github.com/k-five/renrem/blob/master/screenshot/04_windows_renrem_boost_on_powershel.png)  
+
+![05_windows_renrem_std_on_bash](https://github.com/k-five/renrem/blob/master/screenshot05_windows_renrem_std_on_bash.png)  
+
 
 ---
 
