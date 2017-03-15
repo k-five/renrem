@@ -18,7 +18,7 @@ You should have received a copy of the GNU General Public License       *
 along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
                                                                         *
 *************************************************************************
-            this version is used from boost::regex library
+                this version uses boost::regex library
 ************************************************************************/
 #define GCC_VERSION ( __GNUC__ * 100 + __GNUC_MINOR__ * 10  + __GNUC_PATCHLEVEL__ )
 #if GCC_VERSION >= 540   // 540 == 5.4.0
