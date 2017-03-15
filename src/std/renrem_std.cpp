@@ -20,17 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 *************************************************************************
             this version is used from std::regex library
 ************************************************************************/
-#if __cplusplus >= 201103L
-#include <regex>
-#include <string>
-#include <sstream>
-#include <iostream>
+#define GCC_VERSION ( __GNUC__ * 100 + __GNUC_MINOR__ * 10  + __GNUC_PATCHLEVEL__ )
+#if GCC_VERSION >= 540   // 540 == 5.4.0
+    #include <regex>
+    #include <string>
+    #include <sstream>
+    #include <iostream>
 ///////////////////
-#include <stdio.h>
+    #include <stdio.h>
 ///////////////////
 #else
-#error you need c++11 or upper
-#endif // __cplusplus
+    #error you need to use gcc version 5.4.0 or upper, since the lower version of gcc has some bugs in regex library
+#endif // GCC_VERSION
 
 #define green_color std::string( "\033[1;32m" )
 #define red_color   std::string( "\033[1;31m" )
