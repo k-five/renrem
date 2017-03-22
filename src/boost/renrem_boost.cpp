@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 ************************************************************************/
 #define GCC_VERSION ( __GNUC__ * 100 + __GNUC_MINOR__ * 10  + __GNUC_PATCHLEVEL__ )
 #if GCC_VERSION >= 540   // 540 == 5.4.0
-    #include <regex>
+    #include <regex.hpp>
     #include <string>
     #include <sstream>
     #include <iostream>
