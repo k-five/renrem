@@ -64,7 +64,10 @@ int main( int argc,const char** const argv ){
     /*************************************/
     /* setting up the auto zeros-leading */
     /*************************************/
-
+    
+    --argc;                         // for skipping the name of program
+    --argc;                         // for skipping the first argument
+    
     const char** clone_argv = argv;
     char str_argc       [ 10 ]{};
     char rename_format  [ 50 ]{};
