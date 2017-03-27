@@ -1,0 +1,7 @@
+here you see those bugs that have been fixed
+
+
+UTC:    Mon Mar 27 13:17:44 2017 GMT
+in the auto zero-leading part, the argc variable should have decremented 2 times
+one time for skipping the name of the program and another for skipping the first
+argument that passed to the program.
