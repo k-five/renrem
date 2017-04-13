@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 #define red_color_match "\033[1;31m$&\033[m"
 #define prefix_and_match  "$`$&"
 
-#define __RENREM_VERSION__ "0.1.0"
+#define __RENREM_VERSION__ "0.2.0"
 
 void get_help( const char* what = "get_help() was called" );
 
@@ -86,9 +86,8 @@ int main( int argc,const char** const argv ){
     /* extracting the user-entered input into variables */
     /****************************************************/
 
-    char flag_s    = '\0';
-    char flag_d    = '\0';
-    char delimiter = '\0';
+    char action_flag = '\0';
+    char delimiter   = '\0';
 
     short number_of_delimiter = 0;
 
@@ -100,48 +99,32 @@ int main( int argc,const char** const argv ){
     int index       = 0;
     int clone_index = 0;
 
-    std::istringstream iss;
+    std::istringstream iss( argv_1 );
 
-    if( rename_is_correct || remove_is_correct ){
-        iss.str( argv[ 1 ] );
-        for( ; iss.good(); iss.get() ){
-            switch( iss.peek() ){
-                case 's':
-                    flag_s = 's';
-                    break;
+    if( iss.peek() == 's' || iss.peek() == 'd' ){
 
-                case 'd':
-                    flag_d = 'd';
-                    break;
+        number_of_delimiter = 3;
+        action_flag = iss.get();    // extracts 's' or 'd'
+        delimiter   = iss.get();    // extracts delimiter
 
-                case '/':
-                case '|':
-                case '@':
-                case '#':
-                    delimiter = iss.peek();
-                    break;
+        std::getline( iss, match, delimiter );
+        std::getline( iss, substitute, delimiter );
 
-                default:
-                    std::getline( iss, match, delimiter );
+        iss.get( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
+        iss.get();  // get rid of delimiter
+        iss >> index;
 
-                    for( const char chr : argv_1 ){
-                        if( chr == delimiter )
-                            ++number_of_delimiter;
-                    }
+    } else {
 
-                    if( number_of_delimiter >= 3 ){
-                        std::getline( iss, substitute, delimiter );
-                        iss.getline( end_flag, 3, delimiter );
-                    } else {
-                        iss.getline( end_flag, 3, delimiter );
-                    }
+        number_of_delimiter = 3;
+        delimiter = iss.get();  // extracts delimiter
 
-                    iss >> index;
-                    clone_index = index;
+        std::getline( iss, match, delimiter );
+        std::getline( iss, substitute, delimiter );
 
-                    break;
-            }
-        }
+        iss.get( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
+        iss.get();  // get rid of delimiter
+        iss >> index;
     }
 
     /********************************************************/
@@ -249,7 +232,7 @@ int main( int argc,const char** const argv ){
                     /**********************************/
                     /* rename if the 's' flag was set */
                     /**********************************/
-                    if( flag_s && new_name != old_name ){
+                    if( ( action_flag == 's' ) && ( new_name != old_name ) ){
                         const short result = rename( old_name.c_str(), new_name.c_str() );
                         if( result == 0 ){
                             printf( " [Success]\n" );               // for 0 it says: Success
@@ -267,7 +250,7 @@ int main( int argc,const char** const argv ){
                     /* remove if the 'd' flag is set */
                     /*********************************/
 
-                    if( flag_d ){
+                    if( action_flag == 'd' ){
                         const short result = remove( old_name.c_str() );
                         if( result == 0 ){
                             printf( " [Success]\n" );               // for 0 it says: Success
