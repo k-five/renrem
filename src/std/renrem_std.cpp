@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 #define red_color_match "\033[1;31m$&\033[m"
 #define prefix_and_match  "$`$&"
 
-#define __RENREM_VERSION__ "0.2.0"
+#define __RENREM_VERSION__ "0.2.9"
 
 void get_help( const char* what = "get_help() was called" );
 
@@ -66,19 +66,12 @@ int main( int argc,const char** const argv ){
     /* setting up the auto zeros-leading */
     /*************************************/
 
-    --argc;                         // for skipping the name of program
-    --argc;                         // for skipping the first argument
-
-    const char** clone_argv = argv;
+    const char** clone_argv = argv + 2; // argv + 2: for skipping the name of the program and the first argument
     char str_argc       [ 10 ]{};
     char rename_format  [ 50 ]{};
     char remove_format  [ 30 ]{};
 
-//    memset( str_argc,      '\0', sizeof( str_argc ) );
-//    memset( rename_format, '\0', sizeof( rename_format ) );
-//    memset( remove_format, '\0', sizeof( remove_format ) );
-
-    sprintf( str_argc, "%d", argc );
+    sprintf( str_argc, "%d", argc - 2 );    // argc - 2: for ignore the name of the program and the first argument
     sprintf( rename_format, "%%0%dd rename: %%s \033[1;36m>>\033[m %%s", std::string( str_argc ).size() );
     sprintf( remove_format, "%%0%dd remove: %%s", std::string( str_argc ).size() );
 
@@ -94,7 +87,7 @@ int main( int argc,const char** const argv ){
     std::string match;
     std::string substitute;
 
-    char end_flag[ 3 ]{};
+    char end_flag[ 3 ]{ '\0', '\0', '\0' };
 
     int index       = 0;
     int clone_index = 0;
@@ -103,28 +96,33 @@ int main( int argc,const char** const argv ){
 
     if( iss.peek() == 's' || iss.peek() == 'd' ){
 
-        number_of_delimiter = 3;
         action_flag = iss.get();    // extracts 's' or 'd'
         delimiter   = iss.get();    // extracts delimiter
 
+        for( const char ch : argv_1 ) if( ch == delimiter ) ++number_of_delimiter;
+
         std::getline( iss, match, delimiter );
         std::getline( iss, substitute, delimiter );
 
         iss.get( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
         iss.get();  // get rid of delimiter
         iss >> index;
+        clone_index = index;
 
     } else {
 
-        number_of_delimiter = 3;
         delimiter = iss.get();  // extracts delimiter
 
-        std::getline( iss, match, delimiter );
-        std::getline( iss, substitute, delimiter );
+        for( const char ch : argv_1 ) if( ch == delimiter ) ++number_of_delimiter;
 
-        iss.get( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
-        iss.get();  // get rid of delimiter
-        iss >> index;
+        std::getline( iss, match, delimiter );
+
+        if( number_of_delimiter == 3 ){
+            std::getline( iss, substitute, delimiter );
+            iss.get( end_flag, sizeof( end_flag ) / sizeof( char ) );
+        } else {
+            iss.get( end_flag, sizeof( end_flag ) / sizeof( char ) );
+        }
     }
 
     /********************************************************/
@@ -171,7 +169,6 @@ int main( int argc,const char** const argv ){
     /*******************/
 
     std::size_t counter = 0;
-    clone_argv += 2;
 
     while( *clone_argv ){
 
@@ -180,7 +177,7 @@ int main( int argc,const char** const argv ){
             if( std::regex_search( dir_name, match_result, regex ) ){
 
                 old_name          = dir_name;
-                old_name_colorize = std::regex_replace( dir_name, regex, red_color_match , search_flag );
+                old_name_colorize = std::regex_replace( dir_name, regex, red_color_match , search_flag );   // red_color_match uses match_result above
 
                 /*********************************************************/
                 /* finding the number of match to fix the negative index */
