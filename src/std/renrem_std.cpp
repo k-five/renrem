@@ -25,9 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
     #include <regex>
     #include <string>
     #include <sstream>
-    #include <iostream>
 ///////////////////
-    #include <stdio.h>
+    #include <cstdio>
 ///////////////////
 #else
     #error you need to use gcc version 5.4.0 or upper, since the lower version of gcc has some bugs in regex library
@@ -39,6 +38,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 
 #define red_color_match "\033[1;31m$&\033[m"
 #define prefix_and_match  "$`$&"
+
+#define __RENREM_VERSION__ "0.1.0"
 
 void get_help( const char* what = "get_help() was called" );
 
@@ -64,7 +65,7 @@ int main( int argc,const char** const argv ){
     /*************************************/
     /* setting up the auto zeros-leading */
     /*************************************/
-    
+
     --argc;                         // for skipping the name of program
     --argc;                         // for skipping the first argument
 
@@ -150,7 +151,7 @@ int main( int argc,const char** const argv ){
     try{
         std::basic_regex< char > regex ( match );
     } catch( const std::regex_error& re ){
-        std::cerr << "input regex error: " << re.what() << std::endl;
+        printf( "%s: %s\n", "input regex error", re.what() );
         return 0;
     }
 
@@ -294,8 +295,7 @@ return 0; }
 
 void get_help( const char* what ){
 const char* usage =
-R"help(
-Usage:
+R"(Usage:
     rename:     /match/substitute/
                 /match/substitute/g     ( global )
                 /match/substitute/i     ( case-sensitive )
@@ -334,9 +334,8 @@ renrem: An acronym for [rename] and [remove] file, based on
         regular expressions which uses: ECMAScript 262.
 
 Copyright (C) 2017  Shakib
-source and bug report: github.com/k-five/renrem
-version 0.1 [ std::regex ]
-)help";
-    std::cout << usage << std::endl;
-    std::cerr <<  what << std::endl;
+source and bug report: github.com/k-five/renrem)";
+    printf( "%s\n", usage );
+    printf( "%s: %s\n\n", "version", __RENREM_VERSION__ );
+    printf( "%s\n", what );
 }
