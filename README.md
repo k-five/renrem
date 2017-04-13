@@ -23,11 +23,10 @@ Only C++ code and plus a little C
 
 ## Portable:
 Only the standard library:  
-* std::iostream  
 * std::sstream
 * std::string    
 * std::regex  
-* stdio.h  
+* cstdio  
 
 ## Colorize the output:
 Using [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
