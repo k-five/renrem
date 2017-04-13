@@ -39,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.   *
 #define red_color_match "\033[1;31m$&\033[m"
 #define prefix_and_match  "$`$&"
 
-#define __RENREM_VERSION__ "0.2.9"
+#define __RENREM_VERSION__ "0.3.4"
 
 void get_help( const char* what = "get_help() was called" );
 
@@ -55,8 +55,8 @@ int main( int argc,const char** const argv ){
     /***************************************************/
 
     std::string argv_1 = argv[ 1 ];
-    bool rename_is_correct = std::regex_match( argv_1, std::basic_regex< char >( "s?([/|@#])(?:(?!\\1).)+\\1(?:(?!\\1).)*\\1(?:(?:gi?|ig)?(?:\\1-?[1-9]\\d?)?|i)?" ) );
-    bool remove_is_correct = std::regex_match( argv_1, std::basic_regex< char >( "d?([/|@#])(?:(?!\\1).)+\\1(?:gi?|ig?)?" ) );
+    bool rename_is_correct = std::regex_match( argv_1, std::regex( "s?([/|@#])(?:(?!\\1).)+\\1(?:(?!\\1).)*\\1(?:(?:gi?|ig)?(?:\\1-?[1-9]\\d?)?|i)?" ) );
+    bool remove_is_correct = std::regex_match( argv_1, std::regex( "d?([/|@#])(?:(?!\\1).)+\\1(?:gi?|ig?)?" ) );
 
     if      ( rename_is_correct && !remove_is_correct ) {}
     else if ( !rename_is_correct && remove_is_correct ) {}
@@ -117,12 +117,15 @@ int main( int argc,const char** const argv ){
 
         std::getline( iss, match, delimiter );
 
-        if( number_of_delimiter == 3 ){
+        if( number_of_delimiter >= 3 ){
             std::getline( iss, substitute, delimiter );
-            iss.get( end_flag, sizeof( end_flag ) / sizeof( char ) );
+            iss.getline( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
         } else {
-            iss.get( end_flag, sizeof( end_flag ) / sizeof( char ) );
+            iss.get( end_flag, sizeof( end_flag ) / sizeof( char ), delimiter );
         }
+
+        iss >> index;
+        clone_index = index;
     }
 
     /********************************************************/
@@ -130,7 +133,7 @@ int main( int argc,const char** const argv ){
     /********************************************************/
 
     try{
-        std::basic_regex< char > regex ( match );
+        std::regex regex ( match );
     } catch( const std::regex_error& re ){
         printf( "%s: %s\n", "input regex error", re.what() );
         return 0;
@@ -140,19 +143,19 @@ int main( int argc,const char** const argv ){
     /* initializing the regex and related flags */
     /********************************************/
 
-    std::basic_regex< char >::flag_type regex_flag = std::regex_constants::ECMAScript;
+    std::regex::flag_type regex_flag = std::regex_constants::ECMAScript;
     for( const char chr : end_flag ){
         if( chr == 'i' )
             regex_flag = std::regex_constants::icase;
     }
-    std::basic_regex< char > regex( match, regex_flag );
+    std::regex regex( match, regex_flag );
 
     std::regex_constants::match_flag_type search_flag = std::regex_constants::format_first_only;
     for( const char chr : end_flag ){
         if( chr == 'g' )
             search_flag = std::regex_constants::match_default;
     }
-    std::match_results< std::string::const_iterator > match_result;
+    std::smatch match_result;
 
     std::string old_name;
     std::string old_name_colorize;
@@ -203,8 +206,8 @@ int main( int argc,const char** const argv ){
                     while( std::regex_search( dir_name, match_result, regex ) ){
 
                         if( ! --index ){
-                            new_name_colorize += std::regex_replace( dir_name, std::basic_regex<char>( match ), green_color + substitute + reset_color, std::regex_constants::format_first_only );
-                            new_name          += std::regex_replace( dir_name, std::basic_regex<char>( match ), substitute, std::regex_constants::format_first_only );
+                            new_name_colorize += std::regex_replace( dir_name, regex, green_color + substitute + reset_color, std::regex_constants::format_first_only );
+                            new_name          += std::regex_replace( dir_name, regex, substitute, std::regex_constants::format_first_only );
                             break;            // after finding the user apply for index
                         }
                         new_name          += match_result.format( prefix_and_match );
