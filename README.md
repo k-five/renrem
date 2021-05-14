@@ -13,7 +13,6 @@ Since it uses regular expression to match a string, apart from renaming a file, 
 ![05_index](https://github.com/k-five/renrem/blob/master/button/05_index.png)
 ![06_lightweight](https://github.com/k-five/renrem/blob/master/button/06_lightweight.png)
 ![07_leading](https://github.com/k-five/renrem/blob/master/button/07_leading.png)
-![99_copyright](https://github.com/k-five/renrem/blob/master/button/99_copyright.png)
 
 
 ---
