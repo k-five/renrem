@@ -4,44 +4,33 @@ Since it uses regular expression to match a string, apart from renaming a file, 
 
 ---
 
+## features  
 
-![00_title](https://github.com/k-five/renrem/blob/master/button/00_title.png)
-![01_fast](https://github.com/k-five/renrem/blob/master/button/01_fast.png)
-![02_portable](https://github.com/k-five/renrem/blob/master/button/02_portable.png)
-![03_colorize](https://github.com/k-five/renrem/blob/master/button/03_colorize.png)
-![04_changeable](https://github.com/k-five/renrem/blob/master/button/04_changeable.png)
-![05_index](https://github.com/k-five/renrem/blob/master/button/05_index.png)
-![06_lightweight](https://github.com/k-five/renrem/blob/master/button/06_lightweight.png)
-![07_leading](https://github.com/k-five/renrem/blob/master/button/07_leading.png)
-
-
----
-
-## Fast:
+### Fast:
 Only C++ code and plus a little C  
 
-## Portable:
+### Portable:
 Only the standard library:  
 * std::sstream
 * std::string    
 * std::regex  
 * cstdio  
 
-## Colorize the output:
+### Colorize the output:
 Using [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code) for colorize the output for both match and substitute.  
 
-## Changeable from std::regex to boost::regex:
+### Changeable from std::regex to boost::regex:
 Since C++ uses [ECMAScript 262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) if you are willing to use almost **PCRE** feature your can modify the code to boost::regex easly.  
 ![boost_regex_table](https://github.com/k-five/renrem/blob/master/screenshot/boost_regex_table.png)  
 [table-source](http://www.regular-expressions.info/)
 
-## Index-match ( new feature ):
+### Index-match ( new feature ):
 A great new feature that helps you to substitute a match string as easy as possible.  
 
-## Lightweight:
+### Lightweight:
 Less then 300 lines of code.  
 
-## Auto zero leading:
+### Auto zero leading:
 Counts each line and adds zero-leading if need.  
 
 ---
